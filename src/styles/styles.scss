@@ -43,3 +43,83 @@ td {
 .gameLine {
 	font-size: $fontSize;
 }
+
+.containerEndGameDiv {
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	position: absolute;
+	background: black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.endGameDiv {
+		width: 400px;
+		height: 200px;
+		background: white;
+		border-radius: 4px;
+		font-size: $fontSize;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		&__score {
+			margin-bottom: 40px;
+		}
+		&__replay {
+			height: 40px;
+			width: 220px;
+			border-radius: 10px;
+			background: lightblue;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		&__replay:hover {
+			cursor: pointer;
+		}
+	}
+}
+
+.containerStartGameDiv {
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	position: absolute;
+	background: black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.startGameDiv {
+		width: 400px;
+		height: 200px;
+		background: white;
+		border-radius: 4px;
+		font-size: $fontSize;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		&__score {
+			margin-bottom: 40px;
+		}
+		&__play {
+			height: 40px;
+			width: 220px;
+			border-radius: 10px;
+			background: lightblue;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		&__play:hover {
+			cursor: pointer;
+		}
+	}
+}
