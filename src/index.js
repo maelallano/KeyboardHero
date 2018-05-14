@@ -11,13 +11,22 @@ var game = () => {
 		gameLineZ: document.querySelector('.gameLine__z'),
 		gameLineE: document.querySelector('.gameLine__e'),
 		gameLineR: document.querySelector('.gameLine__r'),
-		scoreSpan: document.querySelector('.scoreSpan')
+		scoreSpan: document.querySelector('.scoreSpan'),
+		multiplierSpan: document.querySelector('.multiplierSpan')
 	};
+
+	var speed = 500;
+
+	var combsSucceeded = 0;
 
 	var score = 0;
 	ui.scoreSpan.innerHTML = score;
 
-	const maxScore = 1
+	var multiplier = 1;
+	ui.multiplierSpan.innerHTML = multiplier;
+	var multiplierCounter = 0;
+
+	const maxScore = 50;
 	var scoreByTurn = maxScore; // the max score the player can earn with one right combo
 
 	var combTableFinal = [
@@ -34,15 +43,38 @@ var game = () => {
 		[1, 1, 1, 1],
 		[0, 0, 1, 0],
 		[1, 0, 0, 1],
-		[0, 1, 1, 0]
+		[0, 1, 1, 0],
 	];
+	// var combTableFinal = [
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// ];
 	var combTableFinalLength = combTableFinal.length;
 
 	var combTable = [];
 
 	var gameOver = () => {
 		document.querySelector('.containerEndGameDiv').style.display = "";
-		document.querySelector('.endGameDiv__score').innerHTML = "Score: " + score + "/" + combTableFinalLength + ", " + Math.floor((score/combTableFinalLength) * 100) + "% de réussite"
+		document.querySelector('.endGameDiv__score').innerHTML = "Score: " + score;
+		document.querySelector('.endGameDiv__combsSucceeded').innerHTML = "Combinaisons réussies: " + combsSucceeded + "/" + combTableFinalLength + ", " + Math.floor((combsSucceeded/combTableFinalLength) * 100) + "% de réussite"
 		console.log('wesh');
 	}
 
@@ -76,6 +108,10 @@ var game = () => {
 			var j = 0;
 			while (j < combTable[i].length) {
 				if (combTable[i][j] === 1) {
+					if ((ui.gameLineAll[0].innerHTML || ui.gameLineAll[1].innerHTML || ui.gameLineAll[2].innerHTML || ui.gameLineAll[3].innerHTML) && scoreByTurn) {
+						multiplier = 1;
+						ui.multiplierSpan.innerHTML = multiplier;
+					}
 					render();
 					return;
 				}
@@ -88,7 +124,7 @@ var game = () => {
 		clearInterval(interval);
 		gameOver();
 
-	}, 800)
+	}, speed)
 
 	var compareArray = (a1, a2) => {
 		for (var i = 0; i < a1.length; i++) {
@@ -126,7 +162,6 @@ var game = () => {
 		if (checkIfNull === rightComb.length) {
 			return false;
 		}
-
 		if (compareArray(rightComb, triedComb)) {
 			return true;
 		}
@@ -153,9 +188,15 @@ var game = () => {
 				ui.gameLineE.style.background = "green";
 				ui.gameLineR.style.background = "green";
 
-				score += scoreByTurn;
+				score += (scoreByTurn * multiplier);
+				multiplierCounter += 1;
+				if (multiplierCounter % 4 === 0) {
+					multiplier += multiplier >= 4 ? 0 : 1;
+				}
+				combsSucceeded += scoreByTurn ? 1 : 0;
 				scoreByTurn = 0;
 				ui.scoreSpan.innerHTML = score;
+				ui.multiplierSpan.innerHTML = multiplier;
 
 			    return;
 			}
@@ -166,6 +207,8 @@ var game = () => {
 			ui.gameLineZ.style.background = "red";
 			ui.gameLineE.style.background = "red";
 			ui.gameLineR.style.background = "red";
+
+	    	multiplierCounter = 0;
 		}
 	}
 }
