@@ -23,6 +23,13 @@ body {
 	height: 700px;
 	margin: auto;
 	padding-top: 20px;
+	.score {
+		font-size: $fontSize;
+	}
+	.multiplicator {
+		font-size: $fontSize;
+		margin-bottom: 20px;
+	}
 }
 
 table {
@@ -31,7 +38,9 @@ table {
 }
 
 table, th, td {
-    border: 1px solid black;
+    // border: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
     height: 60px;
     text-align: center;
 }
@@ -41,7 +50,20 @@ td {
 }
 
 .gameLine {
+    border-top: 1px solid black;
+}
+
+.lettersTr {
 	font-size: $fontSize;
+    border: 6px solid black;
+    display: flex;
+    align-items: center;
+}
+
+.lettersTr td {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .containerEndGameDiv {
@@ -56,8 +78,8 @@ td {
 	justify-content: center;
 
 	.endGameDiv {
-		width: 400px;
-		height: 200px;
+		width: 800px;
+		height: 400px;
 		background: white;
 		border-radius: 4px;
 		font-size: $fontSize;
@@ -69,7 +91,11 @@ td {
 		&__score {
 			margin-bottom: 40px;
 		}
+		&__combsSucceeded {
+			margin-bottom: 40px;	
+		}
 		&__replay {
+			margin-bottom: 40px;	
 			height: 40px;
 			width: 220px;
 			border-radius: 10px;
@@ -96,8 +122,8 @@ td {
 	justify-content: center;
 
 	.startGameDiv {
-		width: 400px;
-		height: 200px;
+		width: 800px;
+		height: 400px;
 		background: white;
 		border-radius: 4px;
 		font-size: $fontSize;
@@ -117,9 +143,34 @@ td {
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			margin-top: 10px;
+			margin-bottom: 10px;
 		}
 		&__play:hover {
 			cursor: pointer;
 		}
 	}
+}
+
+.note {
+	background: lightblue;
+	width: 40px;
+	height: 40px;
+	border-radius: 80px;
+	margin: auto;
+	margin-top: 2px; 
+}
+
+.goBackToMenu_Btn {
+	height: 40px;
+	width: 220px;
+	border-radius: 10px;
+	background: lightblue;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+.goBackToMenu_Btn:hover {
+	cursor: pointer;
 }

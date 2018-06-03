@@ -2,7 +2,7 @@ import 'flexboxgrid';
 import './styles/styles.scss';
 import './styles/styles.scss';
 
-var game = () => {
+var game = (combTableFinal) => {
 
 	var ui = {
 		gameTable: document.querySelector('.game__table'),
@@ -29,22 +29,22 @@ var game = () => {
 	const maxScore = 50;
 	var scoreByTurn = maxScore; // the max score the player can earn with one right combo
 
-	var combTableFinal = [
-		[0, 1, 1, 0],
-		[1, 0, 1, 1],
-		[0, 1, 1, 0],
-		[1, 1, 1, 1],
-		[0, 0, 1, 0],
-		[1, 0, 0, 1],
-		[0, 1, 1, 0],
-		[0, 1, 1, 0],
-		[1, 0, 1, 1],
-		[0, 1, 1, 0],
-		[1, 1, 1, 1],
-		[0, 0, 1, 0],
-		[1, 0, 0, 1],
-		[0, 1, 1, 0],
-	];
+	// var combTableFinal = [
+	// 	[0, 1, 1, 0],
+	// 	[1, 0, 1, 1],
+	// 	[0, 1, 1, 0],
+	// 	[1, 1, 1, 1],
+	// 	[0, 0, 1, 0],
+	// 	[1, 0, 0, 1],
+	// 	[0, 1, 1, 0],
+	// 	[0, 1, 1, 0],
+	// 	[1, 0, 1, 1],
+	// 	[0, 1, 1, 0],
+	// 	[1, 1, 1, 1],
+	// 	[0, 0, 1, 0],
+	// 	[1, 0, 0, 1],
+	// 	[0, 1, 1, 0],
+	// ];
 	// var combTableFinal = [
 	// 	[0, 1, 1, 0],
 	// 	[0, 1, 1, 0],
@@ -82,7 +82,7 @@ var game = () => {
 		for (var j = 0; j < combTable.length; j++) {
 			for (var i = 0; i < combTable[j].length; i++) {
 				if (combTable[j][i]) {
-					ui.gameTable.rows[j].cells[i].innerHTML = 'oui';
+					ui.gameTable.rows[j].cells[i].innerHTML = '<div class="note"></div>';
 				} else {
 					ui.gameTable.rows[j].cells[i].innerHTML = '';
 				}
@@ -99,8 +99,8 @@ var game = () => {
 		} else {
 			combTable.unshift(["", "", "", ""]);
 		}
-		if (ui.gameLineA.innerHTML === 'oui' || ui.gameLineZ.innerHTML === 'oui'
-			 || ui.gameLineE.innerHTML === 'oui' || ui.gameLineR.innerHTML === 'oui') {
+		if (ui.gameLineA.innerHTML == "<div class=\"note\"></div>" || ui.gameLineZ.innerHTML == '<div class=\"note\"></div>'
+			 || ui.gameLineE.innerHTML == '<div class=\"note\"></div>' || ui.gameLineR.innerHTML == '<div class=\"note\"></div>') {
 			combTable.pop();
 		}
 		var i = 0;
@@ -146,7 +146,7 @@ var game = () => {
 		}
 
 		for (var i = 0; i < ui.gameLineAll.length; i++) {
-			if (ui.gameLineAll[i].innerHTML === "oui") {
+			if (ui.gameLineAll[i].innerHTML == "<div class=\"note\"></div>") {
 				rightComb.push(true);
 			} else {
 				rightComb.push(false);
@@ -173,12 +173,11 @@ var game = () => {
 
 	onkeydown = onkeyup = function(e){
 	    map[e.keyCode] = e.type === 'keydown';
-	    console.log();
 
-		ui.gameLineA.style.background = map[65] ? "blue" : ""; // a
-		ui.gameLineZ.style.background = map[90] ? "yellow" : ""; // z
-		ui.gameLineE.style.background = map[69] ? "pink" : ""; // e
-		ui.gameLineR.style.background = map[82] ? "brown" : ""; // r
+		ui.gameLineA.style.background = map[65] ? "grey" : ""; // a
+		ui.gameLineZ.style.background = map[90] ? "grey" : ""; // z
+		ui.gameLineE.style.background = map[69] ? "grey" : ""; // e
+		ui.gameLineR.style.background = map[82] ? "grey" : ""; // r
 
 		if (map[32]) { // spacebar + a
 			if (checkIfRightComb(map[65], map[90], map[69], map[82])) {
@@ -212,18 +211,264 @@ var game = () => {
 		}
 	}
 }
+var level1 = [
+	[0, 1, 1, 0],
+	[1, 0, 0, 0],
+	[0, 1, 1, 0],
+	[1, 0, 0, 0],
+	[0, 1, 1, 0],
+	[1, 0, 0, 0],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 0, 1, 0],
+	[1, 0, 1, 0],
+	[0, 1, 0, 0],
+	[0, 0, 1, 0],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 0, 1, 0],
+	[1, 0, 1, 0],
+	[0, 1, 0, 0],
+	[0, 0, 1, 0],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[1, 0, 0, 0],
+	[0, 1, 1, 0],
+	[1, 0, 0, 0],
+	[0, 1, 1, 0],
+	[1, 0, 0, 0],
+	[0, 1, 1, 0]
+];
+
+var level2 = [
+	[1, 1, 1, 1],
+	[1, 1, 1, 1],
+	[0, 1, 1, 0],
+	[1, 0, 0, 1],
+	[0, 1, 1, 0],
+	[1, 0, 0, 1],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 0, 1, 1],
+	[1, 1, 0, 0],
+	[1, 1, 1, 1],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 0, 1, 1],
+	[1, 1, 0, 0],
+	[1, 1, 1, 1],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 0, 1, 1],
+	[1, 1, 0, 0],
+	[1, 1, 1, 1],
+	[0, 0, 1, 0],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 0, 1, 0],
+	[1, 0, 1, 0],
+	[0, 1, 0, 1],
+	[0, 0, 1, 0],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[1, 0, 0, 1],
+	[0, 1, 1, 0],
+	[1, 0, 0, 1],
+	[0, 1, 1, 0],
+	[1, 0, 0, 1],
+	[0, 1, 1, 0]
+];
+
+var level3 = [
+	[1, 0, 0, 0],
+	[1, 0, 0, 0],
+	[1, 1, 1, 0],
+	[0, 1, 1, 1],
+	[1, 1, 1, 0],
+	[0, 1, 1, 1],
+	[1, 1, 1, 0],
+	[0, 1, 1, 1],
+	[0, 1, 1, 0],
+	[1, 0, 0, 1],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 0, 1, 0],
+	[1, 0, 1, 0],
+	[0, 1, 0, 1],
+	[0, 0, 1, 0],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 0, 1, 0],
+	[1, 0, 1, 0],
+	[0, 1, 0, 1],
+	[0, 0, 1, 0],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[0, 1, 1, 0],
+	[1, 0, 0, 1],
+	[0, 1, 1, 0],
+	[1, 0, 0, 1],
+	[0, 1, 1, 0],
+	[1, 0, 0, 1],
+	[0, 1, 1, 0]
+];
+
+var currLevel;
 
 document.querySelector('.containerEndGameDiv').style.display = "none";
 
-document.querySelector('.startGameDiv__play').addEventListener('click', function () {
+document.querySelectorAll('.startGameDiv__play')[0].addEventListener('click', function () {
 	document.querySelector('.containerStartGameDiv').style.display = "none";
-	game();
+	currLevel = 0;
+	game(level1);
+});
+document.querySelectorAll('.startGameDiv__play')[1].addEventListener('click', function () {
+	document.querySelector('.containerStartGameDiv').style.display = "none";
+	currLevel = 1;
+	game(level2);
+});
+document.querySelectorAll('.startGameDiv__play')[2].addEventListener('click', function () {
+	document.querySelector('.containerStartGameDiv').style.display = "none";
+	currLevel = 2;
+	game(level3);
 });
 
 document.querySelector('.endGameDiv__replay').addEventListener('click', function () {
 	document.querySelector('.containerEndGameDiv').style.display = "none";
-	game();
+	var level1 = [
+		[0, 1, 1, 0],
+		[1, 0, 0, 0],
+		[0, 1, 1, 0],
+		[1, 0, 0, 0],
+		[0, 1, 1, 0],
+		[1, 0, 0, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 0, 1, 0],
+		[1, 0, 1, 0],
+		[0, 1, 0, 0],
+		[0, 0, 1, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 0, 1, 0],
+		[1, 0, 1, 0],
+		[0, 1, 0, 0],
+		[0, 0, 1, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[1, 0, 0, 0],
+		[0, 1, 1, 0],
+		[1, 0, 0, 0],
+		[0, 1, 1, 0],
+		[1, 0, 0, 0],
+		[0, 1, 1, 0]
+	];
+
+	var level2 = [
+		[1, 1, 1, 1],
+		[1, 1, 1, 1],
+		[0, 1, 1, 0],
+		[1, 0, 0, 1],
+		[0, 1, 1, 0],
+		[1, 0, 0, 1],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 0, 1, 1],
+		[1, 1, 0, 0],
+		[1, 1, 1, 1],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 0, 1, 1],
+		[1, 1, 0, 0],
+		[1, 1, 1, 1],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 0, 1, 1],
+		[1, 1, 0, 0],
+		[1, 1, 1, 1],
+		[0, 0, 1, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 0, 1, 0],
+		[1, 0, 1, 0],
+		[0, 1, 0, 1],
+		[0, 0, 1, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[1, 0, 0, 1],
+		[0, 1, 1, 0],
+		[1, 0, 0, 1],
+		[0, 1, 1, 0],
+		[1, 0, 0, 1],
+		[0, 1, 1, 0]
+	];
+
+	var level3 = [
+		[1, 0, 0, 0],
+		[1, 0, 0, 0],
+		[1, 1, 1, 0],
+		[0, 1, 1, 1],
+		[1, 1, 1, 0],
+		[0, 1, 1, 1],
+		[1, 1, 1, 0],
+		[0, 1, 1, 1],
+		[0, 1, 1, 0],
+		[1, 0, 0, 1],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 0, 1, 0],
+		[1, 0, 1, 0],
+		[0, 1, 0, 1],
+		[0, 0, 1, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 0, 1, 0],
+		[1, 0, 1, 0],
+		[0, 1, 0, 1],
+		[0, 0, 1, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[1, 0, 0, 1],
+		[0, 1, 1, 0],
+		[1, 0, 0, 1],
+		[0, 1, 1, 0],
+		[1, 0, 0, 1],
+		[0, 1, 1, 0]
+	];
+
+	if (currLevel === 0)
+		game(level1)
+	else if (currLevel === 1)
+		game(level2)
+	else if (currLevel === 2)
+		game(level3)
 });
+
+document.querySelectorAll('.goBackToMenu_Btn')[0].addEventListener('click', function () {
+	location.reload();
+});
+document.querySelectorAll('.goBackToMenu_Btn')[1].addEventListener('click', function () {
+	location.reload();
+});
+
+
 
 
 
