@@ -2,9 +2,9 @@ import 'flexboxgrid';
 import './styles/styles.scss';
 import './styles/styles.scss';
 
-var game = (combTableFinal) => {
+const game = (combTableFinal) => {
 
-	var ui = {
+	const ui = {
 		gameTable: document.querySelector('.game__table'),
 		gameLineAll: document.querySelectorAll('.gameLine td'),
 		gameLineA: document.querySelector('.gameLine__a'),
@@ -15,7 +15,7 @@ var game = (combTableFinal) => {
 		multiplierSpan: document.querySelector('.multiplierSpan')
 	};
 
-	var speed = 500;
+	const speed = 500;
 
 	var combsSucceeded = 0;
 
@@ -29,44 +29,6 @@ var game = (combTableFinal) => {
 	const maxScore = 50;
 	var scoreByTurn = maxScore; // the max score the player can earn with one right combo
 
-	// var combTableFinal = [
-	// 	[0, 1, 1, 0],
-	// 	[1, 0, 1, 1],
-	// 	[0, 1, 1, 0],
-	// 	[1, 1, 1, 1],
-	// 	[0, 0, 1, 0],
-	// 	[1, 0, 0, 1],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[1, 0, 1, 1],
-	// 	[0, 1, 1, 0],
-	// 	[1, 1, 1, 1],
-	// 	[0, 0, 1, 0],
-	// 	[1, 0, 0, 1],
-	// 	[0, 1, 1, 0],
-	// ];
-	// var combTableFinal = [
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// 	[0, 1, 1, 0],
-	// ];
 	var combTableFinalLength = combTableFinal.length;
 
 	var combTable = [];
@@ -179,7 +141,7 @@ var game = (combTableFinal) => {
 		ui.gameLineE.style.background = map[69] ? "grey" : ""; // e
 		ui.gameLineR.style.background = map[82] ? "grey" : ""; // r
 
-		if (map[32]) { // spacebar + a
+		if (map[32]) { // spacebar
 			if (checkIfRightComb(map[65], map[90], map[69], map[82])) {
 			    console.log("success");
 				ui.gameLineA.style.background = "green";

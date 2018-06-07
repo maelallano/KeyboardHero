@@ -32,9 +32,14 @@ body {
 	}
 }
 
+div {
+	perspective: 800px;
+}
+
 table {
 	width: 100%;
 	height: 100%;
+	transform: rotatex(45deg);
 }
 
 table, th, td {
@@ -58,6 +63,8 @@ td {
     border: 6px solid black;
     display: flex;
     align-items: center;
+    width: 560px;
+    transform: translateY(47px) translateX(-82px);
 }
 
 .lettersTr td {
